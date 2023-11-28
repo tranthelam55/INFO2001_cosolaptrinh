@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char ten[50];
+    char tacgia[50];
+    float gia;
+} Book;
+
+void enterIn4OfBook(Book *sach) {
+    printf("Nhap ten sach: ");
+    scanf("%s", sach->name);
+    
+    printf("nhap ten tac gia: ");
+    scanf("%s", sach->author);
+    
+    printf("Nhap gia sach: ");
+    scanf("%f", &(sach->price));
+}
+
+void displayIn4OfBook(Book *sach) {
+    printf("Ten sach: %s\n", sach->name);
+    printf("Tac gia: %s\n", sach->author);
+    printf("Gia sach: %.2f\n", sach->price);
+}
+
+int main() {
+    int numOfBook;
+    printf("Nhap so luong sach: ");
+    scanf("%d", &numOfBook);
+    
+    Book *bookList = (Book *)malloc(numOfBook * sizeof(Book));
+    
+    for (int i = 0; i < numOfBook; i++) {
+        printf("\nhap thong tin sach: %d \n", i + 1);
+        enterIn4OfBook(&bookList[i]);
+    }
+    
+    printf("\nthong tin cac sach vua nhap:\n");
+    for (int i = 0; i < numOfBook; i++) {
+        printf("\nthong tin cac sach %d:\n", i + 1);
+        enterIn4OfBook(&bookList[i]);
+    }
+    
+    free(bookList);
+    
+    return 0;
+}
