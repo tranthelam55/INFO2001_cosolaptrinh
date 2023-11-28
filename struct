@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_EMPLOYEES 100
+
+typedef struct {
+    int employeeId;
+    char name[100];
+    char position[100];
+    float salary;
+} Employee;
+
+// Khai báo mảng
+Employee employees[MAX_EMPLOYEES];
+int numEmployees = 0;
+
+void addEmployee() {
+    if (numEmployees >= MAX_EMPLOYEES) {
+        printf("The list is full.\n");
+        return;
+    }
+    
+    Employee newEmployee;
+    printf("Enter ID: ");
+    scanf("%d", &(newEmployee.employeeId));
+    printf("Enter name: ");
+    scanf("%s", newEmployee.name);
+    printf("Enter position: ");
+    scanf("%s", newEmployee.position);
+    printf("Enter salary: ");
+    scanf("%f", &(newEmployee.salary));
+    
+    employees[numEmployees] = newEmployee;
+    numEmployees++;
+    
+    printf("Added successfully! \n");
+}
+void removeEmployee() {
+    int employeeId;
+    printf("Enter an ID to remove: ");
+    scanf("%d", &employeeId);
+    
+    int foundList = -1;
+    for (int i = 0; i < numEmployees; i++) {
+        if (employees[i].employeeId == employeeId) {
+            foundList = i;
+            break;
+        }
+    }
+    
+    if (foundList == -1) {
+        printf("Unexisted employee with ID: %d.\n", employeeId);
+        return;
+    }
+    
+   
+    for (int i = foundList; i < numEmployees - 1; i++) {
+        employees[i] = employees[i + 1];
+    }
+    
+    numEmployees--;
+    
+    printf("Deleted successfully.\n");
+}
+
+void displayEmployees() {
+    printf("Employees List:\n");
+    printf("ID\tName\tPosition\t\tSalary\n");
+    for (int i = 0; i < numEmployees; i++) {
+        printf("%d\t%s\t\t%s\t\t%.2f\n", employees[i].employeeId, employees[i].name, employees[i].position, employees[i].salary);
+    }
+}
+
+
+int compareByName(const void* a, const void* b) {
+    Employee* empA = (Employee*)a;
+    Employee* empB = (Employee*)b;
+    return strcmp(empA->name, empB->name);
+}
+
+
+void sortEmployeesByName() {
+    qsort(employees, numEmployees, sizeof(Employee), compareByName);
+    printf("Sort successfully!\n");
+}
+
+int main() {
+    int choice;
+    
+    do {
+        printf("Quan li nhan su\n");
+        printf("1. them nhan vien\n");
+        printf("2. xoa nhan vien\n");
+        printf("3. Hien thi nhan vien\n");
+        printf("4. Sap xep nhan vien theo ten\n");
+        printf("5. Thoat\n");
+        printf("Nhap lua chon: ");
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                addEmployee();
+                break;
+            case 2:
+                removeEmployee();
+                break;
+            case 3:
+                displayEmployees();
+                break;
+            case 4:
+                sortEmployeesByName();
+                break;
+            case 5:
+                printf("Ket thuc truong trinh.\n");
+                break;
+            default:
+                printf("Lua chon khong hop le.\n");
+                break;
+        }
+    } while (choice != 5);
+    
+    return 0;
+}
