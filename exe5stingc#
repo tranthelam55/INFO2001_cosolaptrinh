@@ -1,9 +1,4 @@
-static void Main(string[] args)
+public static string RemoveWhitespace(string inputString)
 {
-    Console.Write("Enter a string: ");
-    string userInput = Console.ReadLine();
-
-    // Call other methods here using the userInput variable
-    string stringWithoutWhitespace = RemoveWhitespace(userInput);
-    Console.WriteLine($"String without whitespace: '{stringWithoutWhitespace}'");
+    return string.Concat(inputString.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries));
 }
