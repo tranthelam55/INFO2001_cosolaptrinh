@@ -1,25 +1,56 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.34909.67
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex6", "ex6.csproj", "{F24428A2-04AF-4CB9-B625-BA11F31330BF}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F24428A2-04AF-4CB9-B625-BA11F31330BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F24428A2-04AF-4CB9-B625-BA11F31330BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F24428A2-04AF-4CB9-B625-BA11F31330BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F24428A2-04AF-4CB9-B625-BA11F31330BF}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {300858C6-057B-4F0F-986C-04A24030076B}
-	EndGlobalSection
-EndGlobal
+
+﻿using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Khởi tạo biến sum để lưu trữ tổng của các số dương
+        int sum = 0;
+
+        // Khởi tạo biến boolean để kiểm soát vòng lặp chính
+        bool continueInput = true;
+
+        // Hiển thị thông báo cho người dùng
+        Console.WriteLine("Enter a series of numbers. Negative numbers will be skipped.");
+
+        // Bắt đầu vòng lặp chính
+        while (continueInput)
+        {
+            // Yêu cầu người dùng nhập một số (hoặc 'q' để thoát)
+            Console.Write("Enter a number (or 'q' to quit): ");
+            string input = Console.ReadLine();
+
+            // Nếu người dùng nhập 'q' thì thoát vòng lặp
+            if (input.ToLower() == "q")
+            {
+                continueInput = false;
+                break;
+            }
+
+            // Cố gắng phân tích đầu vào thành một số nguyên
+            if (int.TryParse(input, out int number))
+            {
+                // Nếu số đó là dương, cộng nó vào biến sum
+                if (number >= 0)
+                {
+                    sum += number;
+                }
+                // Nếu số đó là âm, hiển thị thông báo và bỏ qua nó
+                else
+                {
+                    Console.WriteLine($"Skipping negative number: {number}");
+                    continue;
+                }
+            }
+            // Nếu đầu vào không phải là số, hiển thị thông báo lỗi
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number or 'q' to quit.");
+            }
+        }
+
+        // Hiển thị tổng của các số dương
+        Console.WriteLine($"The sum of the positive numbers is: {sum}");
+    }
+}
