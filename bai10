@@ -1,0 +1,48 @@
+using System;
+
+struct Student
+{
+    public string Name;
+    public float Score;
+}
+
+class bai10
+{
+    static void Main(string[] args)
+    {
+        // Nhập số lượng sinh viên
+        Console.Write("Nhập số lượng sinh viên: ");
+        int n = int.Parse(Console.ReadLine());
+
+        // Tạo mảng để lưu trữ thông tin của sinh viên
+        Student[] students = new Student[n];
+
+        // Nhập thông tin của từng sinh viên
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine($"Nhập thông tin của sinh viên {i + 1}:");
+            Console.Write("Tên: ");
+            students[i].Name = Console.ReadLine();
+            Console.Write("Điểm: ");
+            students[i].Score = float.Parse(Console.ReadLine());
+        }
+
+        // In thông tin của từng sinh viên
+        Console.WriteLine("\nThông tin của từng sinh viên:");
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine($"Tên: {students[i].Name}, Điểm: {students[i].Score}");
+        }
+
+        // Tính điểm trung bình của cả lớp
+        float totalScore = 0;
+        foreach (var student in students)
+        {
+            totalScore += student.Score;
+        }
+        float averageScore = totalScore / n;
+
+        // In điểm trung bình của cả lớp
+        Console.WriteLine($"\nĐiểm trung bình của cả lớp: {averageScore}");
+    }
+}
