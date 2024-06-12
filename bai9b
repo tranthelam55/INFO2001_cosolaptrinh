@@ -1,0 +1,35 @@
+// Tham khảo AI
+
+using System;
+
+class bai9b
+{
+    static void Main(string[] args)
+    {
+        // Nhập chuỗi ký tự từ người dùng
+        Console.Write("Nhập chuỗi ký tự: ");
+        string input = Console.ReadLine();
+
+        // Đếm số lượng từ trong chuỗi
+        int wordCount = CountWords(input);
+
+        // In kết quả lên màn hình
+        Console.WriteLine("Số lượng từ trong chuỗi: " + wordCount);
+    }
+
+    static int CountWords(string str)
+    {
+        // Loại bỏ các khoảng trắng dư thừa
+        str = str.Trim();
+
+        // Nếu chuỗi rỗng, trả về 0
+        if (string.IsNullOrEmpty(str))
+            return 0;
+
+        // Tách chuỗi thành các từ dựa trên khoảng trắng
+        string[] words = str.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Trả về số lượng từ
+        return words.Length;
+    }
+}
