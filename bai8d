@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+
+class bai8d
+{
+    static void Main(string[] args)
+    {
+        // Nhập chuỗi ký tự từ người dùng
+        Console.Write("Nhập chuỗi ký tự: ");
+        string input = Console.ReadLine();
+
+        // Tạo dictionary để lưu số lần xuất hiện của từng ký tự
+        Dictionary<char, int> charCount = new Dictionary<char, int>();
+
+        // Duyệt qua từng ký tự trong chuỗi
+        foreach (char c in input)
+        {
+            // Nếu ký tự chưa được lưu trong dictionary, thêm mới vào với giá trị 1
+            if (!charCount.ContainsKey(c))
+            {
+                charCount[c] = 1;
+            }
+            // Nếu ký tự đã có trong dictionary, tăng giá trị lên 1
+            else
+            {
+                charCount[c]++;
+            }
+        }
+
+        // Hiển thị kết quả
+        Console.WriteLine("\nSố lần xuất hiện của mỗi ký tự:");
+        foreach (KeyValuePair<char, int> kvp in charCount)
+        {
+            Console.WriteLine("{0} - {1}", kvp.Key, kvp.Value);
+        }
+    }
+}
