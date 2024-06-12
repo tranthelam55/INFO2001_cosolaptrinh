@@ -1,0 +1,19 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Yêu cầu người dùng nhập hai số nguyên có dấu 1 byte
+        Console.Write("Nhập số nguyên có dấu 1 (từ -128 đến 127) thứ nhất: ");
+        sbyte num1 = sbyte.Parse(Console.ReadLine());
+        Console.Write("Nhập số nguyên có dấu 1 (từ -128 đến 127) thứ hai: ");
+        sbyte num2 = sbyte.Parse(Console.ReadLine());
+
+        // Tính tổng của hai số
+        sbyte sum = (sbyte)(num1 + num2);
+
+        // In kết quả lên màn hình
+        Console.WriteLine($"Tổng của {num1} và {num2} là {sum}.");
+    }
+}
